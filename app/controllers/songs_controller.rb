@@ -1,11 +1,7 @@
-# require_relative '../../config/environment'
 require 'rack-flash'
 class SongsController < ApplicationController
-  configure do
-    enable :sessions
-    use Rack::Flash
-  end
-
+  use Rack::Flash
+ 
   get '/songs' do 
     # binding.pry
     @songs = Song.all
@@ -53,7 +49,6 @@ class SongsController < ApplicationController
 
     
     flash[:message] = "Successfully updated song."
-    binding.pry
     #redirect "/songs/#{@song.slug}"
     erb :"/songs/show"
 
